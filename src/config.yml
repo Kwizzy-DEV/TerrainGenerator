@@ -1,0 +1,35 @@
+#If you want generate large zone use that.
+
+truncate_enabled: true
+truncate_blocks: 1024
+#Ticks between each truncate
+truncate_time: 15
+
+#Default value of each arguments
+
+#Integer
+level: 64
+#Double
+scale: 64
+#Double
+frequency: 0.5
+#Double
+amplitude: 0.5
+#Double
+amplifier: 12
+
+
+#Soon:
+#custom_preset:
+#  preset_test:
+#    scale: 64
+#    frequency: 0.5
+#    amplitude: 0.5
+#    amplifier: 12
+#    surface_materials: 80%2,10%1,1%1:5
+#    underground_materials: 80%1,10%1:5,10%1:6
+#    schematics:
+#    - (70) treeOne.schematic
+#    - (10) treeTwo.schematic
+#    - (1) rockOne.schematic
+#    - (5) rockTwo.schematic

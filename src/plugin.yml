@@ -1,0 +1,8 @@
+author: Kwizzy
+version: 1.1
+name: TerrainGenerator
+main: fr.kwizzy.terraingenerator.TerrainGeneratorPlugin
+softdepend: [AsyncWorldEdit, WorldEdit]
+commands:
+  terrain:
+  tundo:
