@@ -56,7 +56,7 @@ public class Terrain implements CommandExecutor
                 }
                 Selection sel = worldEditPlugin.getSelection(p);
                 if (!(sel != null && sel.getMaximumPoint() != null && sel.getMinimumPoint() != null)) {
-                    p.sendMessage("§cVeuillez sélectionner la position §b1 §c& §b2 §cavec la hache.");
+                    p.sendMessage("§cYou need to select position §b1 §c& §b2 §cwith the worldedit wand.");
                     return false;
                 }
 
@@ -72,6 +72,7 @@ public class Terrain implements CommandExecutor
                 String surface = "2,159:5";
                 String underground = "1,1:6";
                 int level = ConfigManager.level;
+                int octave = ConfigManager.octave;
                 double amplifier = ConfigManager.amplifier;
                 double scale = ConfigManager.scale;
                 double frequency = ConfigManager.frequency;
@@ -103,6 +104,9 @@ public class Terrain implements CommandExecutor
                     if(containArgument("-un:", args)){
                         underground = getValue("-un:", args);
                     }
+                    if(containArgument("-oc:", args)){
+                        octave = Integer.parseInt(getValue("-oc:", args));
+                    }
                     if(containStrict("-a", args)){
                         withoutAir = true;
                     }
@@ -123,6 +127,9 @@ public class Terrain implements CommandExecutor
                         amplitude = Utils.randDouble(0.1, 1.1);
                     if(!containArgument("-se:", args))
                         seed = Utils.randomInteger(-90000, 90000);
+                    if(!containArgument("-oc:", args)){
+                        octave = Utils.randomInteger(1, 20);
+                    }
                 }
                 IAsyncWorldEdit iAsyncWorldEdit = (IAsyncWorldEdit) Bukkit.getPluginManager().getPlugin("AsyncWorldEdit");
                 BukkitWorld bw = new BukkitWorld(p.getWorld());
@@ -146,11 +153,10 @@ public class Terrain implements CommandExecutor
 
                 IThreadSafeEditSession threadSafeEditSession = sessionFactory.getThreadSafeEditSession(bw, -1, blockBag, playerEntry);
                 IBlockPlacer blockPlacer = iAsyncWorldEdit.getBlockPlacer();
-                TerrainInfo t = new TerrainInfo(c, level, seed, scale, frequency, amplitude, amplifier, p, surface, underground, withoutAir);
+                TerrainInfo t = new TerrainInfo(c, level, seed, scale, frequency, amplitude, amplifier, p, surface, underground, withoutAir, octave);
                 LocalSession session = WorldEdit.getInstance().getSession(bp);
                 blockPlacer.performAsAsyncJob(threadSafeEditSession, playerEntry, "§9TerrainGeneration §dPlugin§f", new BasicGeneration(t));
                 session.remember((EditSession) threadSafeEditSession);
-                System.out.println(threadSafeEditSession.size());
             } else {
 
                 help(p);
@@ -209,7 +215,7 @@ public class Terrain implements CommandExecutor
                    "  -amf:double = §eamplifier\n" +
                    "  -amt:double = §eamplitude\n" +
                    "  -se:integer = §eseed of the generation\n" +
-                   "  -seed:integer = §eseed of the generation\n" +
+                   "  -oc:integer = §eoctave modification\n" +
                    "  -f:double = §efrequency\n" +
                    "  -sc:double = §escale (High = flat, low = mountains)\n" +
                    "  -random = §erandom parametters\n" +

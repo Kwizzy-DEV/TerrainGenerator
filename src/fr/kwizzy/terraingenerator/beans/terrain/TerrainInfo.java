@@ -19,6 +19,7 @@ public class TerrainInfo
     Cuboid cubo;
     Player p;
     int level;
+    int octave;
     long seed;
     double scale;
     double frequency;
@@ -41,7 +42,8 @@ public class TerrainInfo
                        Player p,
                        String surface,
                        String underground,
-                       boolean withoutAir)
+                       boolean withoutAir,
+                       int octave)
     {
         this.cubo = cubo;
         this.level = level;
@@ -54,6 +56,7 @@ public class TerrainInfo
         this.surface = surface;
         this.underground = underground;
         this.withoutAir = withoutAir;
+        this.octave = octave;
         setProbabilityList();
     }
 

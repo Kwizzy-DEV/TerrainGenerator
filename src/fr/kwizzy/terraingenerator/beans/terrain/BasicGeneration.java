@@ -34,7 +34,7 @@ public class BasicGeneration implements IFuncParamEx<Integer, ICancelabeEditSess
     public Integer execute(ICancelabeEditSession editSession) throws MaxChangedBlocksException
     {
         Random r = new Random(tInfo.seed);
-        SimplexOctaveGenerator octave = new SimplexOctaveGenerator(r, 8);
+        SimplexOctaveGenerator octave = new SimplexOctaveGenerator(r, tInfo.octave);
         octave.setScale(1. / tInfo.scale);
         for (int x = tInfo.cubo.xMin; x <= tInfo.cubo.xMax; ++x) {
             for (int z = tInfo.cubo.zMin; z <= tInfo.cubo.zMax; ++z) {
@@ -115,7 +115,7 @@ public class BasicGeneration implements IFuncParamEx<Integer, ICancelabeEditSess
         Vector v = new Vector(x, y, z);
         BaseBlock b = new BaseBlock(m.getMaterial().getId(), m.getData());
         try {
-            editSession.setBlock(v, b, EditSession.Stage.BEFORE_CHANGE);
+            editSession.setBlock(v, b);
         } catch (WorldEditException e) {
             e.printStackTrace();
         }

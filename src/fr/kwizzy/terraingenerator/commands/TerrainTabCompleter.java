@@ -33,6 +33,7 @@ public class TerrainTabCompleter implements TabCompleter
             newList.add("-sc:" + ConfigManager.scale);
             newList.add("-f:" + ConfigManager.frequency);
             newList.add("-amt:" + ConfigManager.amplitude);
+            newList.add("-oc:" + ConfigManager.octave);
             newList.add("-se:17");
             newList.add("-random");
             newList.add("-a");

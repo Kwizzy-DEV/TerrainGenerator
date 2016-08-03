@@ -13,6 +13,7 @@ public class ConfigManager
 
     private static FileConfiguration c = TerrainGeneratorPlugin.getInstance().getConfig();
     public static int    level = c.getInt("level");
+    public static int    octave = c.getInt("octave");
     public static double scale = c.getInt("scale");
     public static double frequency = c.getDouble("frequency");
     public static double amplitude = c.getDouble("amplitude");

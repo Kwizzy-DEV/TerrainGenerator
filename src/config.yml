@@ -1,9 +1,3 @@
-#If you want generate large zone use that.
-
-truncate_enabled: true
-truncate_blocks: 1024
-#Ticks between each truncate
-truncate_time: 15
 
 #Default value of each arguments
 
@@ -17,6 +11,8 @@ frequency: 0.5
 amplitude: 0.5
 #Double
 amplifier: 12
+#Integer
+octave: 8
 
 
 #Soon:
